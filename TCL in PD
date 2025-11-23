@@ -1,0 +1,44 @@
+In physical design, TCL (Tool Command Language) commands are extensively used to interact with Electronic Design Automation (EDA) tools and automate various tasks. These commands allow users to control the design flow, manipulate design objects, set constraints, and extract information.
+
+https://www.google.com/search?q=example+of+tcl+commands+in+physical+design&oq=example+of+tcl+commands+in+physical+design&gs_lcrp=EgRlZGdlKgYIABBFGDkyBggAEEUYOTIHCAEQIRifBTIHCAIQIRifBdIBCTExMzkzajBqMagCALACAA&sourceid=chrome&ie=UTF-8
+
+Here are examples of TCL commands used in different stages of physical design:
+
+1. Design Setup and Reading:
+read_verilog design.v: Reads the Verilog netlist into the tool.
+read_libs liberty.lib: Reads the timing liberty files for the standard cells.
+read_lef tech.lef: Reads the Library Exchange Format (LEF) file containing technology and cell layout information.
+link_design top: Links the various design components to form a complete design.
+set_app_var search_path ". /path/to/libs": Sets the search path for libraries and other design files.
+
+2. Floorplanning and Placement:
+create_floorplan -core_utilization 0.7 -aspect_ratio 1.0: Creates a floorplan with specified core utilization and aspect ratio.
+create_boundary -box {x1 y1 x2 y2}: Defines a physical boundary for a specific area.
+add_stripes -layers {METAL1 METAL2} -widths {1.0 2.0} -spacings {0.5 1.0}: Adds power/ground stripes to the design.
+place_design: Performs global and detailed placement of cells.
+
+3. Clock Tree Synthesis (CTS):
+set_ideal_network [get_ports CLK]: Defines the clock port as an ideal network before CTS.
+create_clock_tree: Synthesizes the clock tree.
+
+4. Routing:
+route_global: Performs global routing to determine general routing paths.
+route_detailed: Performs detailed routing to connect all nets.
+
+5. Timing Analysis and Optimization:
+report_timing: Generates a timing report to analyze design performance.
+optimize_design: Performs various optimizations to improve timing, area, and power.
+set_max_delay -from [get_pins start_reg/Q] -to [get_pins end_reg/D] 1.0: Sets a maximum delay constraint between two pins.
+
+6. Verification and Signoff:
+check_drc: Runs Design Rule Checking (DRC) to verify layout rules.
+check_lvs: Runs Layout Versus Schematic (LVS) to verify layout matches the netlist.
+write_def design_out.def: Writes out the final DEF (Design Exchange Format) file.
+write_verilog out.v: Writes out the final netlist.
+
+7. General Utility Commands:
+set var_name value: Sets a variable.
+puts $var_name: Prints the value of a variable.
+foreach item $list { puts $item }: Iterates through a list.
+source script.tcl: Executes a TCL script.
+proc procedure_name {args} { body }: Defines a custom procedure.
